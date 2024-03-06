@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
-import 'package:pomodoro_timer/pages/home_page.dart';
-import 'package:pomodoro_timer/pages/setting_page.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:pomodoro_timer/controllers/ad_controller.dart';
+import 'package:pomodoro_timer/controllers/footer_controller.dart';
 import 'package:pomodoro_timer/utils/navigate_util.dart';
 
 /// 共通フッター
 /// - 画面遷移と広告の表示を行う
-class FutterWidget extends StatelessWidget {
+class FooterComponent extends StatelessWidget {
+  final AdController adController = AdController();
+  final FooterController footerController = FooterController();
+
   /// フッター全体
   @override
   Widget build(BuildContext context) {
@@ -36,21 +40,16 @@ class FutterWidget extends StatelessWidget {
 
   /// 広告
   Widget AdBanner() {
-    return Container(
-      height: 40,
-      width: 300,
-      color: Colors.blue,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text('広告'),
-            ],
-          ),
-        ],
-      ),
-    );
+    if (adController.bannerAd != null) {
+      return Container(
+        alignment: Alignment.center,
+        child: AdWidget(ad: adController.bannerAd),
+        width: adController.bannerAd.size.width.toDouble(),
+        height: adController.bannerAd.size.height.toDouble(),
+      );
+    } else {
+      return Container();
+    }
   }
 
   /// ホーム画面アイコン
@@ -65,7 +64,7 @@ class FutterWidget extends StatelessWidget {
         size: AppDimens.footerIconSize,
       ),
       onPressed: () {
-        NavigateUtil.navigateToPage(context, "/");
+        footerController.navigateTo(context, "/");
       },
     );
   }
@@ -82,7 +81,7 @@ class FutterWidget extends StatelessWidget {
         size: AppDimens.footerIconSize,
       ),
       onPressed: () {
-        NavigateUtil.navigateToPage(context, "/setting");
+        footerController.navigateTo(context, "/setting");
       },
     );
   }
