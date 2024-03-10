@@ -5,13 +5,19 @@ import 'package:pomodoro_timer/constants/dimens.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:pomodoro_timer/controllers/ad_controller.dart';
 import 'package:pomodoro_timer/controllers/footer_controller.dart';
-import 'package:pomodoro_timer/utils/navigate_util.dart';
 
 /// 共通フッター
 /// - 画面遷移と広告の表示を行う
 class FooterComponent extends StatelessWidget {
   final AdController adController = AdController();
   final FooterController footerController = FooterController();
+
+  // アイコンサイズ
+  static const double iconSize = 40;
+  // アイコンマージン
+  static const EdgeInsets iconMargin = EdgeInsets.all(20);
+  // アイコンパディング
+  static const EdgeInsets iconPadding = EdgeInsets.all(10);
 
   /// フッター全体
   @override
@@ -55,13 +61,13 @@ class FooterComponent extends StatelessWidget {
   /// ホーム画面アイコン
   Widget HomeIcon(BuildContext context) {
     return NeumorphicButton(
-      padding: AppDimens.footerIconPadding,
-      margin: AppDimens.footerIconMargin,
+      padding: iconPadding,
+      margin: iconMargin,
       style: AppDimens.defaultNeumorphicStyle,
       child: Icon(
         Icons.access_time_filled_sharp,
         color: AppColors.baseObject,
-        size: AppDimens.footerIconSize,
+        size: iconSize,
       ),
       onPressed: () {
         footerController.navigateTo(context, "/");
@@ -72,13 +78,13 @@ class FooterComponent extends StatelessWidget {
   /// 設定画面アイコン
   Widget SettingIcon(BuildContext context) {
     return NeumorphicButton(
-      padding: AppDimens.footerIconPadding,
-      margin: AppDimens.footerIconMargin,
+      padding: iconPadding,
+      margin: iconMargin,
       style: AppDimens.defaultNeumorphicStyle,
       child: Icon(
         Icons.settings,
         color: AppColors.baseObject,
-        size: AppDimens.footerIconSize,
+        size: iconSize,
       ),
       onPressed: () {
         footerController.navigateTo(context, "/setting");
