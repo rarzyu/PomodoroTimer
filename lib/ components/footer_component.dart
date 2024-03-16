@@ -23,7 +23,6 @@ class FooterComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width; // 画面の幅
-    double screenHeight = MediaQuery.of(context).size.height; // 画面の高さ
 
     return Container(
       child: Column(
@@ -46,16 +45,12 @@ class FooterComponent extends StatelessWidget {
 
   /// 広告
   Widget AdBanner() {
-    if (adController.bannerAd != null) {
-      return Container(
-        alignment: Alignment.center,
-        child: AdWidget(ad: adController.bannerAd),
-        width: adController.bannerAd.size.width.toDouble(),
-        height: adController.bannerAd.size.height.toDouble(),
-      );
-    } else {
-      return Container();
-    }
+    return Container(
+      alignment: Alignment.center,
+      child: AdWidget(ad: adController.bannerAd),
+      width: adController.bannerAd.size.width.toDouble(),
+      height: adController.bannerAd.size.height.toDouble(),
+    );
   }
 
   /// ホーム画面アイコン
@@ -64,9 +59,12 @@ class FooterComponent extends StatelessWidget {
       padding: iconPadding,
       margin: iconMargin,
       style: AppDimens.defaultNeumorphicStyle,
-      child: Icon(
+      child: NeumorphicIcon(
         Icons.access_time_filled_sharp,
-        color: AppColors.baseObject,
+        style: NeumorphicStyle(
+          color: AppColors.baseObject,
+          depth: 1.5,
+        ),
         size: iconSize,
       ),
       onPressed: () {
@@ -81,9 +79,12 @@ class FooterComponent extends StatelessWidget {
       padding: iconPadding,
       margin: iconMargin,
       style: AppDimens.defaultNeumorphicStyle,
-      child: Icon(
+      child: NeumorphicIcon(
         Icons.settings,
-        color: AppColors.baseObject,
+        style: NeumorphicStyle(
+          color: AppColors.baseObject,
+          depth: 1.5,
+        ),
         size: iconSize,
       ),
       onPressed: () {

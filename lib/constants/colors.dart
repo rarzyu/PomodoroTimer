@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 /// カラー定義
 class AppColors {
-
   // ##メインカラー
   static const mainColor = Color.fromRGBO(196, 238, 244, 1);
 

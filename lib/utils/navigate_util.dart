@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 /// 画面遷移の共通処理
 class NavigateUtil {
 
-  /// 画面遷移が可能な場合に遷移する
-  static void navigateToPage(BuildContext context, String routeName) {
+  /// 画面遷移が可能かどうかの判定
+  /// 
+  /// @param context BuildContext
+  /// @param routeName 遷移先のパス
+  /// @return true:画面遷移が可能/false:画面遷移が不可能
+  static bool canNavigateToPage(BuildContext context, String routeName) {
+    // 遷移先が現在の画面かどうかの判定
     bool isCurrentRoute = false;
 
     Navigator.popUntil(context, (route) {
@@ -15,9 +20,7 @@ class NavigateUtil {
       return true;
     });
 
-    // 現在のルートでない場合は遷移する
-    if (!isCurrentRoute) {
-      Navigator.pushNamed(context, routeName);
-    }
+    // 現在の画面の場合は遷移しない
+    return !isCurrentRoute;
   }
 }

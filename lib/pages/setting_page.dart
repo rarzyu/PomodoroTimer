@@ -10,6 +10,7 @@ class SettingPage extends StatelessWidget {
         child: Column(
           children: [
             Text('setting screen'),
+            Expanded(child: Container()),
             FooterComponent(),
           ],
         ),

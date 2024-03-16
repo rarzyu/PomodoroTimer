@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pomodoro_timer/controllers/ad_controller.dart';
 import '../utils/navigate_util.dart';
 
@@ -12,9 +11,13 @@ class FooterController {
   /// @param context BuildContext
   /// @param path 遷移先のパス
   void navigateTo(BuildContext context, String path) {
-    // 確率でインタースティシャル広告を表示
-    adController.showInterstitialAdRandom();
+    // 画面遷移が可能な場合に遷移
+    if (NavigateUtil.canNavigateToPage(context, path)) {
+      // 確率でインタースティシャル広告を表示
+      adController.showInterstitialAdRandom();
 
-    NavigateUtil.navigateToPage(context, path);
+      // 遷移
+      Navigator.pushNamed(context, path);
+    }
   }
 }
