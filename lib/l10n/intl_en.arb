@@ -1,1 +1,7 @@
-{}
+{
+    "@@locale": "en",
+    
+    "startTitle": "Let's get started",
+
+    "startButton": "START"
+}

@@ -26,7 +26,6 @@ class TextIconButtonComponent extends StatelessWidget {
       ),
       child: Container(
         width: width.toDouble(),
-        padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,

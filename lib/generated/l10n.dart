@@ -49,6 +49,26 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Let's get started`
+  String get startTitle {
+    return Intl.message(
+      'Let\'s get started',
+      name: 'startTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `START`
+  String get startButton {
+    return Intl.message(
+      'START',
+      name: 'startButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -57,7 +77,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
-      Locale.fromSubtags(languageCode: 'jp'),
+      Locale.fromSubtags(languageCode: 'ja'),
     ];
   }
 

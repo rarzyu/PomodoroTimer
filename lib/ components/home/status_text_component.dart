@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
+import 'package:pomodoro_timer/generated/l10n.dart';
 
 /// ステータステキスト
 class StatusTextComponent extends StatelessWidget {
@@ -7,7 +8,8 @@ class StatusTextComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('hoge 始めよう',
+      padding: EdgeInsets.only(top: 10),
+      child: Text(S.of(context).startTitle,
           style: AppDimens.baseTextStyle.copyWith(
             fontSize: 40,
           )),
