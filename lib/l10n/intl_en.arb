@@ -3,5 +3,8 @@
     
     "startTitle": "Let's get started",
 
-    "startButton": "START"
+    "startButton": "START",
+    "skipButton": "SKIP",
+    "resetButton": "RESET",
+    "pauseButton": "PAUSE"
 }

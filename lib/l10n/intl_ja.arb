@@ -3,5 +3,8 @@
     
     "startTitle": "さあ、始めよう",
 
-    "startButton": "スタート"
+    "startButton": "スタート",
+    "skipButton": "スキップ",
+    "resetButton": "リセット",
+    "pauseButton": "一時停止"
 }

@@ -69,6 +69,36 @@ class S {
       args: [],
     );
   }
+
+  /// `SKIP`
+  String get skipButton {
+    return Intl.message(
+      'SKIP',
+      name: 'skipButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RESET`
+  String get resetButton {
+    return Intl.message(
+      'RESET',
+      name: 'resetButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PAUSE`
+  String get pauseButton {
+    return Intl.message(
+      'PAUSE',
+      name: 'pauseButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

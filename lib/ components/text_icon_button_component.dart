@@ -6,7 +6,7 @@ class TextIconButtonComponent extends StatelessWidget {
   final Text text;
   final Icon icon;
   final Function onPressed;
-  final int width;
+  final double width;
 
   TextIconButtonComponent({
     required this.text,

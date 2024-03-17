@@ -22,6 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "pauseButton": MessageLookupByLibrary.simpleMessage("一時停止"),
+        "resetButton": MessageLookupByLibrary.simpleMessage("リセット"),
+        "skipButton": MessageLookupByLibrary.simpleMessage("スキップ"),
         "startButton": MessageLookupByLibrary.simpleMessage("スタート"),
         "startTitle": MessageLookupByLibrary.simpleMessage("さあ、始めよう")
       };
