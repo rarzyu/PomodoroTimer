@@ -99,6 +99,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Working time`
+  String get workingTime {
+    return Intl.message(
+      'Working time',
+      name: 'workingTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Break time`
+  String get breakTime {
+    return Intl.message(
+      'Break time',
+      name: 'breakTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Long break time`
+  String get longBreakTime {
+    return Intl.message(
+      'Long break time',
+      name: 'longBreakTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of repetitions until long break`
+  String get numberOfRepeatUntilLongBreak {
+    return Intl.message(
+      'Number of repetitions until long break',
+      name: 'numberOfRepeatUntilLongBreak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of sets`
+  String get numberOfSets {
+    return Intl.message(
+      'Number of sets',
+      name: 'numberOfSets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vibration`
+  String get vibration {
+    return Intl.message(
+      'Vibration',
+      name: 'vibration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alert`
+  String get alert {
+    return Intl.message(
+      'Alert',
+      name: 'alert',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

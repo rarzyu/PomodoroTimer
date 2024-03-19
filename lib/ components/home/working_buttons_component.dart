@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_timer/%20components/text_icon_button_component.dart';
+import 'package:pomodoro_timer/%20components/common/text_icon_button_component.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
 import 'package:pomodoro_timer/generated/l10n.dart';

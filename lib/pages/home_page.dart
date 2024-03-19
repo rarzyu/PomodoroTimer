@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
           // TODO: 状態でボタン群を切り替える
           // TODO：もっというと、状態によってテキストが切り替わるので、テキストはコントローラーからもらう
           false ? StartButtonComponent() : WorkingButtonsComponent(),
-          Expanded(child: Container()),
+          Spacer(),
           FooterComponent(),
         ]),
       ),

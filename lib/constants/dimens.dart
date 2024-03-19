@@ -13,6 +13,8 @@ class AppDimens {
   );
 
   // ##サイズ
+  // 設定画面のテキストサイズ
+  static const double settingItemTextSize = 20;
 
   // ##マージン
 

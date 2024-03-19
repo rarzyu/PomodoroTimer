@@ -1,10 +1,15 @@
 {
     "@@locale": "ja",
-    
     "startTitle": "さあ、始めよう",
-
     "startButton": "スタート",
     "skipButton": "スキップ",
     "resetButton": "リセット",
-    "pauseButton": "一時停止"
+    "pauseButton": "一時停止",
+    "workingTime": "作業時間",
+    "breakTime": "休憩時間",
+    "longBreakTime": "長期休憩時間",
+    "numberOfRepeatUntilLongBreak": "長期休憩時間までの繰り返し回数",
+    "numberOfSets": "セット数",
+    "vibration": "バイブレーション",
+    "alert": "アラート"
 }

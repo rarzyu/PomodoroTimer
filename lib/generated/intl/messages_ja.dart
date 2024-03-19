@@ -22,10 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "alert": MessageLookupByLibrary.simpleMessage("アラート"),
+        "breakTime": MessageLookupByLibrary.simpleMessage("休憩時間"),
+        "longBreakTime": MessageLookupByLibrary.simpleMessage("長期休憩時間"),
+        "numberOfRepeatUntilLongBreak":
+            MessageLookupByLibrary.simpleMessage("長期休憩時間までの繰り返し回数"),
+        "numberOfSets": MessageLookupByLibrary.simpleMessage("セット数"),
         "pauseButton": MessageLookupByLibrary.simpleMessage("一時停止"),
         "resetButton": MessageLookupByLibrary.simpleMessage("リセット"),
         "skipButton": MessageLookupByLibrary.simpleMessage("スキップ"),
         "startButton": MessageLookupByLibrary.simpleMessage("スタート"),
-        "startTitle": MessageLookupByLibrary.simpleMessage("さあ、始めよう")
+        "startTitle": MessageLookupByLibrary.simpleMessage("さあ、始めよう"),
+        "vibration": MessageLookupByLibrary.simpleMessage("バイブレーション"),
+        "workingTime": MessageLookupByLibrary.simpleMessage("作業時間")
       };
 }

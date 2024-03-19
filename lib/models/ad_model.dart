@@ -13,7 +13,7 @@ class AdModel {
   int retryCount = 0; // リトライ回数
 
   var random = Random().nextInt(100); // 0~99の乱数
-  static const adRate = 60; // 広告表示率
+  static const adRate = 40; // 広告表示率
 
   /// initialize
   AdModel() {

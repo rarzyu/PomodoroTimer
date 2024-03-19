@@ -1,10 +1,16 @@
 {
     "@@locale": "en",
-    
     "startTitle": "Let's get started",
-
     "startButton": "START",
     "skipButton": "SKIP",
     "resetButton": "RESET",
-    "pauseButton": "PAUSE"
+    "pauseButton": "PAUSE",
+
+    "workingTime": "Working time",
+    "breakTime": "Break time",
+    "longBreakTime": "Long break time",
+    "numberOfRepeatUntilLongBreak": "Number of repetitions until long break",
+    "numberOfSets": "Number of sets",
+    "vibration": "Vibration",
+    "alert": "Alert"
 }
