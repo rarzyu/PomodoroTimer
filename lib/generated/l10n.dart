@@ -60,6 +60,46 @@ class S {
     );
   }
 
+  /// `working state`
+  String get workingTitle {
+    return Intl.message(
+      'working state',
+      name: 'workingTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `taking a break`
+  String get breakTitle {
+    return Intl.message(
+      'taking a break',
+      name: 'breakTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `taking a long break`
+  String get longBreakTitle {
+    return Intl.message(
+      'taking a long break',
+      name: 'longBreakTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thanks for all your hard work`
+  String get finishMessage {
+    return Intl.message(
+      'Thanks for all your hard work',
+      name: 'finishMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `START`
   String get startButton {
     return Intl.message(

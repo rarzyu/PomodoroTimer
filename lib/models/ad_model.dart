@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 /// 広告Model
+/// TODO: serviceを使う。modelは実装を持たない
 class AdModel {
   late BannerAd bannerAd;
   InterstitialAd? interstitialAd;

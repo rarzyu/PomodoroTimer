@@ -47,6 +47,7 @@ dependencies:
       ref: feature/remoce_accentcolor
   google_mobile_ads: ^4.0.0
   intl: ^0.18.1
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:
