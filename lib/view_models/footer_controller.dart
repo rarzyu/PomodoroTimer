@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_timer/controllers/ad_controller.dart';
+import 'package:pomodoro_timer/view_models/ad_controller.dart';
 import '../utils/navigate_util.dart';
 
 /// フッター用Controller

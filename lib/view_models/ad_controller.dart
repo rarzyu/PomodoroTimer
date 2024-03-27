@@ -1,5 +1,5 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:pomodoro_timer/models/ad_model.dart';
+import 'package:pomodoro_timer/domains/ad_domain.dart';
 
 /// 広告（Admob）のコントローラー
 class AdController {

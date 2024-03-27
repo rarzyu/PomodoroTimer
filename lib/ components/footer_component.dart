@@ -3,8 +3,8 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:pomodoro_timer/controllers/ad_controller.dart';
-import 'package:pomodoro_timer/controllers/footer_controller.dart';
+import 'package:pomodoro_timer/view_models/ad_controller.dart';
+import 'package:pomodoro_timer/view_models/footer_controller.dart';
 
 /// 共通フッター
 /// - 画面遷移と広告の表示を行う
