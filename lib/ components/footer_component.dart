@@ -3,14 +3,12 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:pomodoro_timer/view_models/ad_controller.dart';
-import 'package:pomodoro_timer/view_models/footer_controller.dart';
+import 'package:pomodoro_timer/view_models/footer_view_model.dart';
 
 /// 共通フッター
 /// - 画面遷移と広告の表示を行う
 class FooterComponent extends StatelessWidget {
-  final AdController adController = AdController();
-  final FooterController footerController = FooterController();
+  final FooterViewModel footerViewModel = FooterViewModel();
 
   // アイコンサイズ
   static const double iconSize = 40;
@@ -47,9 +45,9 @@ class FooterComponent extends StatelessWidget {
   Widget AdBanner() {
     return Container(
       alignment: Alignment.center,
-      child: AdWidget(ad: adController.bannerAd),
-      width: adController.bannerAd.size.width.toDouble(),
-      height: adController.bannerAd.size.height.toDouble(),
+      child: AdWidget(ad: footerViewModel.adShowUtil.bannerAd),
+      width: footerViewModel.adShowUtil.bannerAd.size.width.toDouble(),
+      height: footerViewModel.adShowUtil.bannerAd.size.height.toDouble(),
     );
   }
 
@@ -68,7 +66,7 @@ class FooterComponent extends StatelessWidget {
         size: iconSize,
       ),
       onPressed: () {
-        footerController.navigateTo(context, "/");
+        footerViewModel.navigateTo(context, "/");
       },
     );
   }
@@ -88,7 +86,7 @@ class FooterComponent extends StatelessWidget {
         size: iconSize,
       ),
       onPressed: () {
-        footerController.navigateTo(context, "/setting");
+        footerViewModel.navigateTo(context, "/setting");
       },
     );
   }

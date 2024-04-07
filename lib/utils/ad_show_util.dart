@@ -1,9 +1,9 @@
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:pomodoro_timer/domains/ad_domain.dart';
+import 'package:pomodoro_timer/services/ad_service.dart';
 
-/// 広告（Admob）のコントローラー
-class AdController {
-  AdModel adModel = AdModel();
+/// 広告（Admob）の表示用
+class AdShowUtil {
+  AdService adModel = AdService();
 
   BannerAd get bannerAd => adModel.bannerAd;
 

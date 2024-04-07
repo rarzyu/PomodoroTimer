@@ -5,8 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 /// 広告Model
-/// TODO: serviceを使う。modelは実装を持たない
-class AdModel {
+class AdService {
   late BannerAd bannerAd;
   InterstitialAd? interstitialAd;
 
@@ -17,7 +16,7 @@ class AdModel {
   static const adRate = 40; // 広告表示率
 
   /// initialize
-  AdModel() {
+  AdService() {
     createBannerAd();
     createInterstitialAd();
   }
