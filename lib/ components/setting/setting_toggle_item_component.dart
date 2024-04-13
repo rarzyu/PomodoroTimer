@@ -6,10 +6,12 @@ import 'package:pomodoro_timer/constants/dimens.dart';
 class SettingToggleItemComponent extends StatelessWidget {
   final String title;
   final bool value;
+  final Function(bool) onChanged; // 値変更時のコールバック
 
   const SettingToggleItemComponent({
     required this.title,
     required this.value,
+    required this.onChanged,
   });
 
   @override
@@ -57,11 +59,8 @@ class SettingToggleItemComponent extends StatelessWidget {
           activeTrackColor: Colors.green,
           inactiveTrackColor: Colors.grey,
         ),
-        // TODO: 状態管理および切り替え処理を実装する
         value: value,
-        onChanged: (bool value) {
-          value = !value;
-        },
+        onChanged: (value) => onChanged(!value),
       ),
     );
   }

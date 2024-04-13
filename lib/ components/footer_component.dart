@@ -9,7 +9,7 @@ import 'package:pomodoro_timer/view_models/footer_view_model.dart';
 /// - 画面遷移と広告の表示を行う
 class FooterComponent extends StatelessWidget {
   final FooterViewModel footerViewModel = FooterViewModel();
-
+    
   // アイコンサイズ
   static const double iconSize = 40;
   // アイコンマージン

@@ -6,8 +6,14 @@ import 'package:pomodoro_timer/constants/dimens.dart';
 /// 設定画面のテキスト項目
 class SettingTextItemComponent extends StatelessWidget {
   final String title;
+  final value;
+  final Function(String) onChanged; // 値変更時のコールバック
 
-  SettingTextItemComponent({required this.title});
+  SettingTextItemComponent({
+    required this.title,
+    required this.value,  
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +60,8 @@ class SettingTextItemComponent extends StatelessWidget {
           boxShape: NeumorphicBoxShape.rect(),
         ),
         child: TextField(
+          controller: TextEditingController(text: value.toString()),
+          onChanged:(value) => onChanged(value),
           textAlign: TextAlign.center,
           maxLines: 1,
           maxLength: 3,

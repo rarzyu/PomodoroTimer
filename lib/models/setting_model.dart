@@ -20,4 +20,15 @@ class SettingModel with _$SettingModel {
   /// ※json_serializableを採用しているので、JSONへの変換は自動生成される
   factory SettingModel.fromJson(Map<String, dynamic> json) =>
       _$SettingModelFromJson(json);
+
+  /// デフォルト値
+  static SettingModel get defaultSetting => const SettingModel(
+        workTime: 25,
+        breakTime: 5,
+        longBreakTime: 30,
+        numberUntilLongBreak: 4,
+        numberSets: 4,
+        isVibration: true,
+        isAlert: true,
+      );
 }
