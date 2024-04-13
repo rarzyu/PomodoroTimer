@@ -9,10 +9,10 @@ import 'package:pomodoro_timer/view_models/setting_view_model.dart';
 /// 設定画面
 class SettingPage extends StatefulWidget {
   @override
-  _SettingPage createState() => _SettingPage();
+  _SettingPageState createState() => _SettingPageState();
 }
 
-class _SettingPage extends State<SettingPage> {
+class _SettingPageState extends State<SettingPage> {
   final SettingViewModel settingViewModel = SettingViewModel();
 
   @override
@@ -49,27 +49,32 @@ class _SettingPage extends State<SettingPage> {
                     title: S.of(context).workingTime,
                     value: settingViewModel.settingModel!.workTime,
                     onChanged: (value) =>
-                        handleChangeSetting(value, SettingKey.workTime)),
+                        handleChangeSetting(value, SettingKey.workTime),
+                    maxLength: 3),
                 SettingTextItemComponent(
                     title: S.of(context).breakTime,
                     value: settingViewModel.settingModel!.breakTime,
                     onChanged: (value) =>
-                        handleChangeSetting(value, SettingKey.breakTime)),
+                        handleChangeSetting(value, SettingKey.breakTime),
+                    maxLength: 3),
                 SettingTextItemComponent(
                     title: S.of(context).longBreakTime,
                     value: settingViewModel.settingModel!.longBreakTime,
                     onChanged: (value) =>
-                        handleChangeSetting(value, SettingKey.longBreakTime)),
+                        handleChangeSetting(value, SettingKey.longBreakTime),
+                    maxLength: 3),
                 SettingTextItemComponent(
                     title: S.of(context).numberOfRepeatUntilLongBreak,
                     value: settingViewModel.settingModel!.numberUntilLongBreak,
                     onChanged: (value) => handleChangeSetting(
-                        value, SettingKey.numberUntilLongBreak)),
+                        value, SettingKey.numberUntilLongBreak),
+                    maxLength: 2),
                 SettingTextItemComponent(
                     title: S.of(context).numberOfSets,
                     value: settingViewModel.settingModel!.numberSets,
                     onChanged: (value) =>
-                        handleChangeSetting(value, SettingKey.numberSets)),
+                        handleChangeSetting(value, SettingKey.numberSets),
+                    maxLength: 2),
                 SettingToggleItemComponent(
                     title: S.of(context).alert,
                     value: settingViewModel.settingModel!.isAlert,

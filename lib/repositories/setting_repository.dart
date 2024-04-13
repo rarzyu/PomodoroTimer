@@ -8,7 +8,7 @@ class SettingRepository {
   /// SharedPreferencesに保存
   Future<void> save(SettingModel settingModel) async {
     final preference = await SharedPreferences.getInstance();
-    final json = settingModel.toJson;
+    final json = settingModel.toJson();
 
     await preference.setString('setting', jsonEncode(json));
   }
