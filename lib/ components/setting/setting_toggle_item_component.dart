@@ -3,7 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
 
 /// 設定画面のトグル項目
-class SettingToggleItemComponent extends StatelessWidget {
+class SettingToggleItemComponent extends StatefulWidget {
   final String title;
   final bool value;
   final Function(bool) onChanged; // 値変更時のコールバック
@@ -15,6 +15,19 @@ class SettingToggleItemComponent extends StatelessWidget {
   });
 
   @override
+  _SettingToggleItemState createState() => _SettingToggleItemState();
+}
+
+class _SettingToggleItemState extends State<SettingToggleItemComponent> {
+  late bool _currentValue;
+
+  @override
+  void initState() {
+    super.initState();
+    _currentValue = widget.value;
+  }
+
+  @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
@@ -24,7 +37,7 @@ class SettingToggleItemComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(width: screenWidth * 0.05),
-          itemLabel(context, title),
+          itemLabel(context, widget.title),
           Container(width: screenWidth * 0.15),
           toggleSwitch(context),
         ],
@@ -54,14 +67,18 @@ class SettingToggleItemComponent extends StatelessWidget {
     return Container(
       height: screenHeight * 0.035,
       child: NeumorphicSwitch(
-        style: NeumorphicSwitchStyle(
-          thumbDepth: 2,
-          activeTrackColor: Colors.green,
-          inactiveTrackColor: Colors.grey,
-        ),
-        value: value,
-        onChanged: (value) => onChanged(!value),
-      ),
+          style: NeumorphicSwitchStyle(
+            thumbDepth: 2,
+            activeTrackColor: Colors.green,
+            inactiveTrackColor: Colors.grey,
+          ),
+          value: _currentValue,
+          onChanged: (value) {
+            setState(() {
+              _currentValue = value;
+            });
+            widget.onChanged(value);
+          }),
     );
   }
 }

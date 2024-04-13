@@ -83,8 +83,8 @@ class _SettingTextItemComponentState extends State<SettingTextItemComponent> {
         ),
         child: TextField(
           controller: _controller,
-          onChanged: (value) =>
-              widget.onChanged(value.isEmpty ? 0 : int.parse(value)),
+          onChanged: (value) => widget.onChanged(
+              value.isEmpty || int.parse(value) == 0 ? 1 : int.parse(value)),
           textAlign: TextAlign.center,
           maxLines: 1,
           maxLength: widget.maxLength,
