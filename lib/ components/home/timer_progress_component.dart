@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
+import 'package:pomodoro_timer/providers/setting_provider.dart';
 
 /// タイマー部分
 ///
 /// 参考
 /// - https://www.youtube.com/watch?v=yvC3Z_MreuI
-class TimerProgressComponent extends StatelessWidget {
+class TimerProgressComponent extends ConsumerWidget {
   // レイアウト
   static const double baseHeightCoefficient = 0.4;
   static const double baseWidthCoefficient = 0.85;
 
   /// 最終的な表示
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     double topPadding = MediaQuery.of(context).size.height * 0.02;
     double bottomPadding = MediaQuery.of(context).size.height * 0.03;
+
+    var settingModel = ref.watch(settingProvider);
 
     return Container(
       padding: EdgeInsets.only(top: topPadding, bottom: bottomPadding),
@@ -26,7 +30,7 @@ class TimerProgressComponent extends StatelessWidget {
           circleInnerBackground(context),
           progressBar(context),
           centerCircle(context),
-          timerText(),
+          timerText(settingModel.workTime.toString())
         ],
       ),
     );
@@ -102,9 +106,9 @@ class TimerProgressComponent extends StatelessWidget {
   }
 
   /// タイマーテキスト
-  Widget timerText() {
+  Widget timerText(String time) {
     return Container(
-      child: Text('25:00',
+      child: Text(time,
           style: AppDimens.baseTextStyle.copyWith(
             fontSize: 60,
           )),

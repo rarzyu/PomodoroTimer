@@ -1,7 +1,8 @@
-import 'package:flutter/material.dart';
+
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/generated/l10n.dart';
 import 'package:pomodoro_timer/pages/home_page.dart';
@@ -9,7 +10,7 @@ import 'pages/setting_page.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,13 +26,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: HomePage(),
       themeMode: ThemeMode.light,
-      theme: NeumorphicThemeData(
+      theme: const NeumorphicThemeData(
         baseColor: AppColors.mainColor,
         lightSource: LightSource.topLeft,
         depth: 1,
         intensity: 1,
       ),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
