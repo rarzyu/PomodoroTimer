@@ -1,16 +1,16 @@
 /// タイマーの状態を表す列挙型
-enum TimerState {
+enum TimerStatus {
   running,  // タイマーが動いている状態
   stopped,  // タイマーが止まっている状態
   paused;  // タイマーが一時停止している状態
 
   String name() {
     switch (this) {
-      case TimerState.running:
+      case TimerStatus.running:
         return 'running';
-      case TimerState.stopped:
+      case TimerStatus.stopped:
         return 'stopped';
-      case TimerState.paused:
+      case TimerStatus.paused:
         return 'paused';
     }
   }
