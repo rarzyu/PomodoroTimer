@@ -140,6 +140,16 @@ class S {
     );
   }
 
+  /// `RESTART`
+  String get restartButton {
+    return Intl.message(
+      'RESTART',
+      name: 'restartButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Working time`
   String get workingTime {
     return Intl.message(

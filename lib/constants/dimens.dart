@@ -23,9 +23,9 @@ class AppDimens {
   // ##テキストスタイル
   // テキストの影
   static const Shadow textShadow = Shadow(
-    color: Color.fromRGBO(30, 30, 30, 0.4),
-    offset: Offset(2, 2),
-    blurRadius: 3,
+    color: Color.fromRGBO(30, 30, 30, 0.3),
+    offset: Offset(1, 2),
+    blurRadius: 2,
   );
 
   // テキストのベーススタイル

@@ -1,31 +1,39 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomodoro_timer/%20components/common/text_icon_button_component.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
+import 'package:pomodoro_timer/constants/timer_status.dart';
 import 'package:pomodoro_timer/generated/l10n.dart';
+import 'package:pomodoro_timer/providers/timer_state_provider.dart';
 
 /// 作業中のボタン群
-class WorkingButtonsComponent extends StatelessWidget {
+class WorkingButtonsComponent extends ConsumerWidget {
   //レイアウト
   static const double minButtonWidthCoefficient = 0.35;
   static const double minButtonObjectSize = 22;
 
   /// ボタン群
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(timerStateProvider);
+
     return Container(
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              skipButton(context),
-              resetButton(context),
+              skipButton(context, ref),
+              resetButton(context, ref),
             ],
           ),
           Padding(
             padding: EdgeInsets.only(top: 20),
-            child: pauseButton(context),
+            child: state.status == TimerStatus.paused
+                ? restartButton(context, ref)
+                : pauseButton(context, ref),
           )
         ],
       ),
@@ -33,7 +41,7 @@ class WorkingButtonsComponent extends StatelessWidget {
   }
 
   /// スキップボタン
-  Widget skipButton(BuildContext context) {
+  Widget skipButton(BuildContext context, WidgetRef ref) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return TextIconButtonComponent(
@@ -48,13 +56,15 @@ class WorkingButtonsComponent extends StatelessWidget {
           color: AppColors.baseText,
           size: minButtonObjectSize + 1,
         ),
-        // TODO: onPressedの処理を実装する
-        onPressed: () => print('スキップボタンが押されました'),
+        onPressed: () {
+          debugPrint('スキップボタンが押されました');
+          ref.read(timerStateProvider.notifier).skip();
+        },
         width: screenWidth * minButtonWidthCoefficient);
   }
 
   /// リセットボタン
-  Widget resetButton(BuildContext context) {
+  Widget resetButton(BuildContext context, WidgetRef ref) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return TextIconButtonComponent(
@@ -70,13 +80,15 @@ class WorkingButtonsComponent extends StatelessWidget {
           color: AppColors.subObjectPink,
           size: minButtonObjectSize + 1,
         ),
-        // TODO: onPressedの処理を実装する
-        onPressed: () => print('リセットボタンが押されました'),
+        onPressed: () {
+          debugPrint('リセットボタンが押されました');
+          ref.read(timerStateProvider.notifier).reset();
+        },
         width: screenWidth * minButtonWidthCoefficient);
   }
 
   /// 一時停止ボタン
-  Widget pauseButton(BuildContext context) {
+  Widget pauseButton(BuildContext context, WidgetRef ref) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return TextIconButtonComponent(
@@ -92,8 +104,34 @@ class WorkingButtonsComponent extends StatelessWidget {
           color: AppColors.subObjectBlue,
           size: 28,
         ),
-        // TODO: onPressedの処理を実装する
-        onPressed: () => print('一時停止ボタンが押されました'),
+        onPressed: () {
+          debugPrint('一時停止ボタンが押されました');
+          ref.read(timerStateProvider.notifier).pause();
+        },
+        width: screenWidth * 0.6);
+  }
+
+  /// 再開ボタン
+  Widget restartButton(BuildContext context, WidgetRef ref) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    return TextIconButtonComponent(
+        text: Text(
+          S.of(context).restartButton,
+          style: AppDimens.baseTextStyle.copyWith(
+            fontSize: 26,
+            color: AppColors.baseText,
+          ),
+        ),
+        icon: Icon(
+          Icons.play_arrow_rounded,
+          color: AppColors.baseText,
+          size: 28,
+        ),
+        onPressed: () {
+          debugPrint('再開ボタンが押されました');
+          ref.read(timerStateProvider.notifier).restart();
+        },
         width: screenWidth * 0.6);
   }
 }

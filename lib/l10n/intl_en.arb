@@ -9,6 +9,7 @@
     "skipButton": "SKIP",
     "resetButton": "RESET",
     "pauseButton": "PAUSE",
+    "restartButton": "RESTART",
     "workingTime": "Working time",
     "breakTime": "Break time",
     "longBreakTime": "Long break time",

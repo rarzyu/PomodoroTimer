@@ -9,6 +9,7 @@
     "skipButton": "スキップ",
     "resetButton": "リセット",
     "pauseButton": "一時停止",
+    "restartButton": "再開",
     "workingTime": "作業時間",
     "breakTime": "休憩時間",
     "longBreakTime": "長期休憩時間",

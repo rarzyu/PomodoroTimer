@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
-import 'package:pomodoro_timer/providers/setting_provider.dart';
+import 'package:pomodoro_timer/providers/timer_state_provider.dart';
 
 /// タイマー部分
 ///
@@ -19,8 +19,6 @@ class TimerProgressComponent extends ConsumerWidget {
     double topPadding = MediaQuery.of(context).size.height * 0.02;
     double bottomPadding = MediaQuery.of(context).size.height * 0.03;
 
-    var settingModel = ref.watch(settingProvider);
-
     return Container(
       padding: EdgeInsets.only(top: topPadding, bottom: bottomPadding),
       child: Stack(
@@ -30,7 +28,7 @@ class TimerProgressComponent extends ConsumerWidget {
           circleInnerBackground(context),
           progressBar(context),
           centerCircle(context),
-          timerText(settingModel.workTime.toString())
+          timerText(ref.watch(timerStateProvider.notifier).remainingTimeString),
         ],
       ),
     );

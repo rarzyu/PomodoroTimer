@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "numberOfSets": MessageLookupByLibrary.simpleMessage("Number of sets"),
         "pauseButton": MessageLookupByLibrary.simpleMessage("PAUSE"),
         "resetButton": MessageLookupByLibrary.simpleMessage("RESET"),
+        "restartButton": MessageLookupByLibrary.simpleMessage("RESTART"),
         "skipButton": MessageLookupByLibrary.simpleMessage("SKIP"),
         "startButton": MessageLookupByLibrary.simpleMessage("START"),
         "startTitle":

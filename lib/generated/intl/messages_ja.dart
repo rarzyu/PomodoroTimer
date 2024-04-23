@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "numberOfSets": MessageLookupByLibrary.simpleMessage("セット数"),
         "pauseButton": MessageLookupByLibrary.simpleMessage("一時停止"),
         "resetButton": MessageLookupByLibrary.simpleMessage("リセット"),
+        "restartButton": MessageLookupByLibrary.simpleMessage("再開"),
         "skipButton": MessageLookupByLibrary.simpleMessage("スキップ"),
         "startButton": MessageLookupByLibrary.simpleMessage("スタート"),
         "startTitle": MessageLookupByLibrary.simpleMessage("さあ、始めよう"),

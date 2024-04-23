@@ -12,6 +12,7 @@ class SettingPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settingModel = ref.watch(settingProvider);
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return GestureDetector(
       onTap: () {
@@ -22,7 +23,7 @@ class SettingPage extends ConsumerWidget {
         body: SafeArea(
           child: Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 15)),
+              Padding(padding: EdgeInsets.only(top: screenHeight * 0.03)),
               SettingTextItemComponent(
                   title: S.of(context).workingTime,
                   value: settingModel.workTime,
