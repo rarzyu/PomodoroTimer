@@ -16,6 +16,7 @@ final timerStateProvider =
   },
 );
 
+/// TODO: 肥大化してきたので、Serviceにしても良いかも
 class TimerStateNotifier extends StateNotifier<TimerState> {
   Timer? _timer;
   Stopwatch _stopwatch = Stopwatch(); // 正確に時間を計測するため、Stopwatchを使用
@@ -126,10 +127,18 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
       if (state.type == TimerType.work) {
         _decrementSets();
       }
-
       state = state.copyWith(
         type: _getNextTimerType(),
         remainingTime: _getNextTime(),
+      );
+
+      _stopwatch.start();
+
+      _timer = Timer.periodic(
+        const Duration(seconds: 1),
+        (Timer timer) {
+          _countDown(timer);
+        },
       );
     }
   }
@@ -189,23 +198,21 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
 
   /// カウントダウン
   void _countDown(Timer timer) {
-    final int elapsedSeconds = _stopwatch.elapsed.inSeconds;
     final Duration newRemainingTime =
-        Duration(minutes: _settingModel.workTime) -
-            Duration(seconds: elapsedSeconds);
+        state.remainingTime - Duration(seconds: 1);
 
     // 残り時間が0秒より大きい場合
     if (state.remainingTime.inSeconds > 0) {
       state = state.copyWith(remainingTime: newRemainingTime);
     } else {
+      timer.cancel();
+      _stopwatch.reset();
       if (!isFinished()) {
         // 終了でなければ、次のタイマーをセット
-        _stopwatch.reset();
         _setNextTimer();
       } else {
         // 終了の場合はタイマーを停止
         _stopwatch.stop();
-        timer.cancel();
       }
     }
   }

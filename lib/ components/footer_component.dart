@@ -9,7 +9,7 @@ import 'package:pomodoro_timer/view_models/footer_view_model.dart';
 /// - 画面遷移と広告の表示を行う
 class FooterComponent extends StatelessWidget {
   final FooterViewModel footerViewModel = FooterViewModel();
-    
+
   // アイコンサイズ
   static const double iconSize = 40;
   // アイコンマージン
@@ -45,9 +45,9 @@ class FooterComponent extends StatelessWidget {
   Widget AdBanner() {
     return Container(
       alignment: Alignment.center,
-      child: AdWidget(ad: footerViewModel.adShowUtil.bannerAd),
-      width: footerViewModel.adShowUtil.bannerAd.size.width.toDouble(),
-      height: footerViewModel.adShowUtil.bannerAd.size.height.toDouble(),
+      width: footerViewModel.bannerAd.size.width.toDouble(),
+      height: footerViewModel.bannerAd.size.height.toDouble(),
+      child: AdWidget(ad: footerViewModel.bannerAd),
     );
   }
 

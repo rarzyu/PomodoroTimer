@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_timer/utils/ad_show_util.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:pomodoro_timer/services/ad_service.dart';
 import '../utils/navigate_util.dart';
 
 /// フッター用ViewModel
 class FooterViewModel {
-  AdShowUtil adShowUtil = AdShowUtil();
+  final AdService _adService = AdService();
+
+  late BannerAd bannerAd;
+  InterstitialAd? interstitialAd;
+
+  /// コンストラクタ
+  FooterViewModel() {
+    bannerAd = _adService.bannerAd;
+    interstitialAd = _adService.interstitialAd;
+  }
 
   /// 画面遷移
   ///
@@ -14,7 +24,10 @@ class FooterViewModel {
     // 画面遷移が可能な場合に遷移
     if (NavigateUtil.canNavigateToPage(context, path)) {
       // 確率でインタースティシャル広告を表示
-      adShowUtil.showInterstitialAdRandom();
+      _adService.showInterstitialAdRandom();
+
+      _adService.bannerAd.dispose(); // 広告の破棄
+      _adService.createBannerAd(); // 広告の再生成
 
       // 遷移
       Navigator.pushNamed(context, path);
