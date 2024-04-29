@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pomodoro_timer/view_models/show_dialog_component_view_model.dart';
 
 /// show_dialogのコンポーネント
 class ShowDialogComponent {
-  /// ダイアログを表示する
+  final ShowDialogComponentViewModel _viewModel =
+      ShowDialogComponentViewModel();
+
+  /// ダイアログを表示し、インタースティシャル広告を表示する
   /// - OKボタンのみのダイアログ
-  void showInfoDialog(BuildContext context, String title, String message) {
+  void showInfoDialogAfterAd(
+      BuildContext context, String title, String message) {
     // ダイアログを表示する
     showCupertinoDialog(
       context: context,
@@ -24,6 +29,8 @@ class ShowDialogComponent {
               onPressed: () {
                 // ダイアログを閉じる
                 Navigator.of(context).pop();
+                // インタースティシャル広告を表示する
+                _viewModel.showInterstitialAd();
               },
             ),
           ],

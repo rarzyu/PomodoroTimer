@@ -21,7 +21,7 @@ class HomePage extends ConsumerWidget {
     // ウィジェットが描画された後にダイアログを実行する必要があるので、
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.watch(timerStateProvider.notifier).isFinished) {
-        _showDialogComponent.showInfoDialog(
+        _showDialogComponent.showInfoDialogAfterAd(
             context, "", S.of(context).finishMessage);
       }
     });
