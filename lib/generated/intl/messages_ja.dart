@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alert": MessageLookupByLibrary.simpleMessage("アラート"),
         "breakTime": MessageLookupByLibrary.simpleMessage("休憩時間"),
         "breakTitle": MessageLookupByLibrary.simpleMessage("休憩中"),
-        "finishMessage": MessageLookupByLibrary.simpleMessage("お疲れ様でした"),
+        "finishMessage": MessageLookupByLibrary.simpleMessage("お疲れ様でした!"),
         "longBreakTime": MessageLookupByLibrary.simpleMessage("長期休憩時間"),
         "longBreakTitle": MessageLookupByLibrary.simpleMessage("長期休憩中"),
         "numberOfRepeatUntilLongBreak":

@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // スクリーンを常にONに設定
-    Wakelock.enable();
+    // TODO:クラッシュするので、コメントアウトにしている
+    // Wakelock.enable();
 
     return NeumorphicApp(
       routes: {

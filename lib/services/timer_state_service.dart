@@ -21,7 +21,7 @@ class TimerStateService {
   /// 終了判定
   /// true: 終了、false: 継続
   bool isFinished(TimerState state) {
-    // 次が長期休憩＆残りセット数が1の場合は終了
+    // 次が長期休憩＆残りセット数が1＆時間が0秒の場合は終了
     return _getNextTimerType(state) == TimerType.longRest &&
         state.remainingSets == 1;
   }

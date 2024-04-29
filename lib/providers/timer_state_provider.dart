@@ -21,6 +21,8 @@ final timerStateProvider =
 
 class TimerStateNotifier extends StateNotifier<TimerState> {
   Timer? _timer;
+  bool _isFinished = false;
+
   final Stopwatch _stopwatch = Stopwatch(); // 正確に時間を計測するため、Stopwatchを使用
   final SettingModel _settingModel;
   final FormatUtil _formatUtil = FormatUtil();
@@ -45,10 +47,13 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
   get remainingTimeString => _formatUtil.formatDuration(state.remainingTime);
 
   // タイマーが終了したかどうか
-  get isFinished => _timerStateService.isFinished(state);
+  get isFinished => _isFinished;
 
   /// タイマーの開始
   void start() {
+    // 終了フラグのリセット
+    _isFinished = false;
+
     // タイマーが停止中の場合のみ実行
     if (state.status == TimerStatus.stopped ||
         state.status == TimerStatus.paused) {
@@ -161,6 +166,9 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
 
         // 終了の場合はリセット
         reset();
+
+        // 終了フラグを立てる
+        _isFinished = true;
       }
     }
   }

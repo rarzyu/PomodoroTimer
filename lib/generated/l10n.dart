@@ -90,10 +90,10 @@ class S {
     );
   }
 
-  /// `Thanks for all your hard work`
+  /// `Thanks for all your hard work!`
   String get finishMessage {
     return Intl.message(
-      'Thanks for all your hard work',
+      'Thanks for all your hard work!',
       name: 'finishMessage',
       desc: '',
       args: [],

@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "breakTime": MessageLookupByLibrary.simpleMessage("Break time"),
         "breakTitle": MessageLookupByLibrary.simpleMessage("taking a break"),
         "finishMessage": MessageLookupByLibrary.simpleMessage(
-            "Thanks for all your hard work"),
+            "Thanks for all your hard work!"),
         "longBreakTime":
             MessageLookupByLibrary.simpleMessage("Long break time"),
         "longBreakTitle":
