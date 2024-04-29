@@ -1,4 +1,3 @@
-
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/generated/l10n.dart';
 import 'package:pomodoro_timer/pages/home_page.dart';
+import 'package:wakelock/wakelock.dart';
 import 'pages/setting_page.dart';
 
 Future<void> main() async {
@@ -18,6 +18,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // スクリーンを常にONに設定
+    Wakelock.enable();
+
     return NeumorphicApp(
       routes: {
         '/home': (context) => HomePage(),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
+import 'package:pomodoro_timer/constants/timer_type.dart';
 import 'package:pomodoro_timer/providers/timer_state_provider.dart';
+import 'package:pomodoro_timer/states/timer_state.dart';
 
 /// タイマー部分
 ///
@@ -16,6 +19,7 @@ class TimerProgressComponent extends ConsumerWidget {
   /// 最終的な表示
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(timerStateProvider);
     double topPadding = MediaQuery.of(context).size.height * 0.02;
     double bottomPadding = MediaQuery.of(context).size.height * 0.03;
 
@@ -28,7 +32,7 @@ class TimerProgressComponent extends ConsumerWidget {
           circleInnerBackground(context),
           progressBar(context),
           centerCircle(context),
-          timerText(ref.watch(timerStateProvider.notifier).remainingTimeString),
+          timerText(ref.watch(timerStateProvider.notifier).remainingTimeString,state),
         ],
       ),
     );
@@ -46,7 +50,7 @@ class TimerProgressComponent extends ConsumerWidget {
         height: baseHeight,
       ),
       style: NeumorphicStyle(
-        depth: 4,
+        depth: 3,
         boxShape: NeumorphicBoxShape.circle(),
       ),
     );
@@ -64,7 +68,7 @@ class TimerProgressComponent extends ConsumerWidget {
         height: baseHeight,
       ),
       style: NeumorphicStyle(
-        depth: -4,
+        depth: -3,
         boxShape: NeumorphicBoxShape.circle(),
       ),
     );
@@ -104,12 +108,28 @@ class TimerProgressComponent extends ConsumerWidget {
   }
 
   /// タイマーテキスト
-  Widget timerText(String time) {
+  Widget timerText(String time, TimerState state) {
     return Container(
       child: Text(time,
           style: AppDimens.baseTextStyle.copyWith(
             fontSize: 60,
+            color: _getTimeColor(state)
           )),
     );
+  }  
+  
+  /// タイマーの文字色
+  Color _getTimeColor(TimerState state) {
+    Color color = AppColors.baseText;
+
+    switch (state.type) {
+      case TimerType.rest:
+        color = AppColors.subObjectPink;
+      case TimerType.longRest:
+        color = AppColors.subObjectGreen;
+      default:
+        color = AppColors.baseText;
+    }
+    return color;
   }
 }
