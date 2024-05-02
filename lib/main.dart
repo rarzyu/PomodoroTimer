@@ -1,3 +1,4 @@
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
@@ -10,7 +11,18 @@ import 'pages/setting_page.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: '.env');
+  await initAppTrackingTransparency();
   runApp(const ProviderScope(child: MyApp()));
+}
+
+Future<void> initAppTrackingTransparency() async {
+  // ユーザーが既にトラッキング許可を与えているか確認
+  final status = await AppTrackingTransparency.trackingAuthorizationStatus;
+
+  // 未決定の場合のみ許可を求める
+  if (status == TrackingStatus.notDetermined) {
+    await AppTrackingTransparency.requestTrackingAuthorization();
+  }
 }
 
 class MyApp extends StatelessWidget {
