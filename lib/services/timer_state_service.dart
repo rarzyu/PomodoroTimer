@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:pomodoro_timer/constants/timer_status.dart';
 import 'package:pomodoro_timer/constants/timer_type.dart';
 import 'package:pomodoro_timer/models/setting_model.dart';
 import 'package:pomodoro_timer/states/timer_state.dart';
@@ -28,16 +27,13 @@ class TimerStateService {
 
   /// 次のタイマーをセットする
   TimerState setNextTimer(TimerState state) {
-    // タイマーが実行中の場合のみ実行
-    if (state.status == TimerStatus.running) {
-      state = state.copyWith(
-        type: _getNextTimerType(state),
-        remainingTime: _getNextTime(state),
-      );
-      // 作業が完了した後にセット数をデクリメント
-      if (state.type != TimerType.work) {
-        state = _decrementSets(state);
-      }
+    state = state.copyWith(
+      type: _getNextTimerType(state),
+      remainingTime: _getNextTime(state),
+    );
+    // 作業が完了した後にセット数をデクリメント
+    if (state.type != TimerType.work) {
+      state = _decrementSets(state);
     }
 
     return state;

@@ -63,12 +63,7 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
       state = state.copyWith(status: TimerStatus.running, type: TimerType.work);
 
       // 1秒毎にコールバック
-      _timer = Timer.periodic(
-        const Duration(seconds: 1),
-        (timer) {
-          _countDown(timer);
-        },
-      );
+      _timerCallback();
     }
   }
 
@@ -84,31 +79,24 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
 
   /// タイマーのリセット
   void reset() {
-    // タイマーが実行中または一時停止中の場合のみ実行
-    if (state.status == TimerStatus.running ||
-        state.status == TimerStatus.paused) {
-      state = state.copyWith(
-        status: TimerStatus.stopped,
-        type: TimerType.work,
-        remainingTime: Duration(minutes: _settingModel.workTime),
-        remainingSets: _settingModel.numberSets,
-        remainingUntilLongBreak: _settingModel.numberUntilLongBreak,
-      );
-      _stopwatch.reset();
-      _timer?.cancel();
-    }
+    state = state.copyWith(
+      status: TimerStatus.stopped,
+      type: TimerType.work,
+      remainingTime: Duration(minutes: _settingModel.workTime),
+      remainingSets: _settingModel.numberSets,
+      remainingUntilLongBreak: _settingModel.numberUntilLongBreak,
+    );
+    _stopwatch.reset();
+    _timer?.cancel();
   }
 
   /// タイマーのスキップ
   void skip() {
-    // タイマーが実行中の場合のみ実行
-    if (state.status == TimerStatus.running) {
-      if (_timerStateService.isFinished(state)) {
-        // 終了の場合はタイマーを停止
-        reset();
-      } else {
-        state = _timerStateService.setNextTimer(state);
-      }
+    if (_timerStateService.isFinished(state)) {
+      // 終了の場合はタイマーを停止
+      reset();
+    } else {
+      state = _timerStateService.setNextTimer(state);
     }
   }
 
@@ -120,13 +108,19 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
       state = state.copyWith(status: TimerStatus.running);
 
       // 1秒毎にコールバック
-      _timer = Timer.periodic(
-        const Duration(seconds: 1),
-        (Timer timer) {
-          _countDown(timer);
-        },
-      );
+      _timerCallback();
     }
+  }
+
+  /// タイマーコールバック
+  void _timerCallback() {
+    // 1秒毎にコールバック
+    _timer = Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer timer) {
+        _countDown(timer);
+      },
+    );
   }
 
   /// カウントダウン
@@ -154,12 +148,7 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
         state = _timerStateService.setNextTimer(state);
         _stopwatch.start();
 
-        _timer = Timer.periodic(
-          const Duration(seconds: 1),
-          (Timer timer) {
-            _countDown(timer);
-          },
-        );
+        _timerCallback();
       } else {
         // 完了アラートを鳴らす
         _timerStateService.playCompleteSound();

@@ -1,9 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pomodoro_timer/%20components/home/progress_circle_component.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
+import 'package:pomodoro_timer/constants/timer_status.dart';
 import 'package:pomodoro_timer/constants/timer_type.dart';
+import 'package:pomodoro_timer/models/setting_model.dart';
+import 'package:pomodoro_timer/providers/setting_provider.dart';
 import 'package:pomodoro_timer/providers/timer_state_provider.dart';
 import 'package:pomodoro_timer/states/timer_state.dart';
 
@@ -15,11 +18,13 @@ class TimerProgressComponent extends ConsumerWidget {
   // レイアウト
   static const double baseHeightCoefficient = 0.4;
   static const double baseWidthCoefficient = 0.85;
+  static const double centerCircleCoefficient = 0.65;
 
   /// 最終的な表示
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(timerStateProvider);
+    final settingModel = ref.watch(settingProvider);
     double topPadding = MediaQuery.of(context).size.height * 0.02;
     double bottomPadding = MediaQuery.of(context).size.height * 0.03;
 
@@ -29,10 +34,12 @@ class TimerProgressComponent extends ConsumerWidget {
         alignment: Alignment.center,
         children: [
           circleBackground(context),
-          circleInnerBackground(context),
-          progressBar(context),
+          state.status == TimerStatus.stopped // タイマーが止まっている場合は表示しない
+              ? Container()
+              : progressBar(context, state, settingModel),
           centerCircle(context),
-          timerText(ref.watch(timerStateProvider.notifier).remainingTimeString,state),
+          timerText(ref.watch(timerStateProvider.notifier).remainingTimeString,
+              state),
         ],
       ),
     );
@@ -50,43 +57,35 @@ class TimerProgressComponent extends ConsumerWidget {
         height: baseHeight,
       ),
       style: NeumorphicStyle(
-        depth: 3,
-        boxShape: NeumorphicBoxShape.circle(),
-      ),
-    );
-  }
-
-  /// 円型の背景(内側)
-  Widget circleInnerBackground(BuildContext context) {
-    double baseHeight =
-        MediaQuery.of(context).size.height * baseHeightCoefficient;
-    double baseWidth = MediaQuery.of(context).size.width * baseWidthCoefficient;
-
-    return Neumorphic(
-      child: Container(
-        width: baseWidth,
-        height: baseHeight,
-      ),
-      style: NeumorphicStyle(
-        depth: -3,
+        depth: -5,
         boxShape: NeumorphicBoxShape.circle(),
       ),
     );
   }
 
   /// プログレスバー
-  /// TODO: 未実装
-  Widget progressBar(BuildContext context) {
+  Widget progressBar(
+      BuildContext context, TimerState state, SettingModel settingModel) {
     double baseHeight =
-        MediaQuery.of(context).size.width * baseHeightCoefficient;
-    double baseWidth =
-        MediaQuery.of(context).size.height * baseWidthCoefficient;
+        MediaQuery.of(context).size.height * baseHeightCoefficient;
+    double baseWidth = MediaQuery.of(context).size.width * baseWidthCoefficient;
 
-    return Container(
-      width: baseWidth * 0.65,
-      height: baseHeight * 0.65,
-      child: CustomPaint(),
-    );
+    // プログレスバーの幅：背景の半径
+    double width = baseWidth / 2;
+
+    return Neumorphic(
+        style: NeumorphicStyle(
+          depth: -5,
+          boxShape: NeumorphicBoxShape.circle(),
+        ),
+        child: CustomPaint(
+          painter: ProgressCircleComponent(
+              state: state, width: width, settingModel: settingModel),
+          child: Container(
+            width: baseWidth,
+            height: baseHeight,
+          ),
+        ));
   }
 
   /// 中心の円
@@ -97,11 +96,11 @@ class TimerProgressComponent extends ConsumerWidget {
 
     return Neumorphic(
       child: Container(
-        width: baseWidth * 0.65,
-        height: baseHeight * 0.65,
+        width: baseWidth * centerCircleCoefficient,
+        height: baseHeight * centerCircleCoefficient,
       ),
       style: NeumorphicStyle(
-        depth: 4,
+        depth: 2,
         boxShape: NeumorphicBoxShape.circle(),
       ),
     );
@@ -111,13 +110,11 @@ class TimerProgressComponent extends ConsumerWidget {
   Widget timerText(String time, TimerState state) {
     return Container(
       child: Text(time,
-          style: AppDimens.baseTextStyle.copyWith(
-            fontSize: 60,
-            color: _getTimeColor(state)
-          )),
+          style: AppDimens.baseTextStyle
+              .copyWith(fontSize: 60, color: _getTimeColor(state))),
     );
-  }  
-  
+  }
+
   /// タイマーの文字色
   Color _getTimeColor(TimerState state) {
     Color color = AppColors.baseText;
