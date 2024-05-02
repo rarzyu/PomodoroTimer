@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Runner
+
+  Created by らるじゅ on 2024/05/02.
+  
+*/
+
+// アプリ名
+CFBundleDisplayName="ザ・ポモドーロタイマー";
+
+// ATTの詳細
+NSUserTrackingUsageDescription="追跡（トラッキング）を許可すると、関連性の高い広告が表示されるようになります。\nこれによる個人情報へのアクセスはありません。";

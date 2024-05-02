@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Runner
+
+  Created by らるじゅ on 2024/05/02.
+  
+*/
+
+// アプリ名
+CFBundleDisplayName="The Pomodoro Timer";
+
+// ATTの詳細
+NSUserTrackingUsageDescription="Allowing tracking (tracking) will allow you to see relevant ads. \nThere is no access to your personal information through this.";
