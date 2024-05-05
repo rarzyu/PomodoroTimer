@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -54,6 +56,21 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate
       ],
       supportedLocales: S.delegate.supportedLocales,
+      localeListResolutionCallback: (locales, supportedLocales) {
+        final currentLocale = ui.window.locale; // デバイスで設定されているロケールの取得
+        debugPrint('current locale language=${currentLocale.languageCode} device locales=$locales supported locales=$supportedLocales');
+        if (locales == null) {
+          return const Locale('en', 'US');
+        }
+        for (var locale in supportedLocales) {
+          // languageCodeで言語コードが取得できる
+          // supportedLocalesと一致すればそのまま返す、それ以外は英語を返す
+          if (currentLocale.languageCode == locale.languageCode) {
+            return locale;
+          }
+        }
+        return const Locale('en', 'US');
+      },
     );
   }
 }
