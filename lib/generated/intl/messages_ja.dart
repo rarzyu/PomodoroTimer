@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "alert": MessageLookupByLibrary.simpleMessage("アラート"),
         "breakTime": MessageLookupByLibrary.simpleMessage("休憩時間"),
         "breakTitle": MessageLookupByLibrary.simpleMessage("休憩中"),
-        "finishMessage": MessageLookupByLibrary.simpleMessage("お疲れ様でした"),
+        "finishMessage": MessageLookupByLibrary.simpleMessage("お疲れ様でした!"),
         "longBreakTime": MessageLookupByLibrary.simpleMessage("長期休憩時間"),
         "longBreakTitle": MessageLookupByLibrary.simpleMessage("長期休憩中"),
         "numberOfRepeatUntilLongBreak":
@@ -33,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "numberOfSets": MessageLookupByLibrary.simpleMessage("セット数"),
         "pauseButton": MessageLookupByLibrary.simpleMessage("一時停止"),
         "resetButton": MessageLookupByLibrary.simpleMessage("リセット"),
+        "restartButton": MessageLookupByLibrary.simpleMessage("再開"),
         "skipButton": MessageLookupByLibrary.simpleMessage("スキップ"),
         "startButton": MessageLookupByLibrary.simpleMessage("スタート"),
         "startTitle": MessageLookupByLibrary.simpleMessage("さあ、始めよう"),

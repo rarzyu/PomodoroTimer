@@ -4,11 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
-/// 広告Model
-/// TODO: serviceを使う。modelは実装を持たない
-class AdModel {
+/// 広告
+class AdService {
+  // シングルトン化
+  static final AdService _instance = AdService._internal();
+  factory AdService() => _instance;
+
   late BannerAd bannerAd;
   InterstitialAd? interstitialAd;
+  bool isBannerAdLoaded = false;
+  bool isInterstitialAdLoaded = false;
 
   static const retryMaxCount = 3; // 最大リトライ回数
   int retryCount = 0; // リトライ回数
@@ -17,9 +22,13 @@ class AdModel {
   static const adRate = 40; // 広告表示率
 
   /// initialize
-  AdModel() {
-    createBannerAd();
-    createInterstitialAd();
+  AdService._internal() {
+    if (!isBannerAdLoaded) {
+      createBannerAd();
+    }
+    if (!isInterstitialAdLoaded) {
+      createInterstitialAd();
+    }
   }
 
   /// dispose
@@ -70,11 +79,13 @@ class AdModel {
       request: AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (_) {
-          print('Banner Ad Loaded');
+          debugPrint('Banner Ad Loaded');
+          isBannerAdLoaded = true;
         },
         onAdFailedToLoad: (ad, error) {
-          print('Banner Ad Failed to load: $error');
+          debugPrint('Banner Ad Failed to load: $error');
           ad.dispose();
+          isBannerAdLoaded = false;
         },
       ),
     )..load();
@@ -88,9 +99,12 @@ class AdModel {
       adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
           interstitialAd = ad;
+          debugPrint('Interstitial Ad Loaded');
+          isInterstitialAdLoaded = true;
         },
         onAdFailedToLoad: (error) {
-          print('Interstitial Ad Failed to load: $error');
+          debugPrint('Interstitial Ad Failed to load: $error');
+          isInterstitialAdLoaded = false;
 
           // リトライ
           if (retryCount < retryMaxCount) {

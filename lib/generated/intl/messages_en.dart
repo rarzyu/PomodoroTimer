@@ -26,7 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "breakTime": MessageLookupByLibrary.simpleMessage("Break time"),
         "breakTitle": MessageLookupByLibrary.simpleMessage("taking a break"),
         "finishMessage": MessageLookupByLibrary.simpleMessage(
-            "Thanks for all your hard work"),
+            "Thanks for all your hard work!"),
         "longBreakTime":
             MessageLookupByLibrary.simpleMessage("Long break time"),
         "longBreakTitle":
@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "numberOfSets": MessageLookupByLibrary.simpleMessage("Number of sets"),
         "pauseButton": MessageLookupByLibrary.simpleMessage("PAUSE"),
         "resetButton": MessageLookupByLibrary.simpleMessage("RESET"),
+        "restartButton": MessageLookupByLibrary.simpleMessage("RESTART"),
         "skipButton": MessageLookupByLibrary.simpleMessage("SKIP"),
         "startButton": MessageLookupByLibrary.simpleMessage("START"),
         "startTitle":

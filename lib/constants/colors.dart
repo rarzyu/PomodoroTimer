@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// カラー定義
 class AppColors {
   // ##メインカラー
-  static const mainColor = Color.fromRGBO(196, 238, 244, 1);
+  static const mainColor = Color.fromRGBO(226, 237, 238, 1);
 
   // ##オブジェクト（文字と共通の場合はこちらに記載）
   static const baseObject = Color.fromRGBO(24, 155, 174, 1);

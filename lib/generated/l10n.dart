@@ -90,10 +90,10 @@ class S {
     );
   }
 
-  /// `Thanks for all your hard work`
+  /// `Thanks for all your hard work!`
   String get finishMessage {
     return Intl.message(
-      'Thanks for all your hard work',
+      'Thanks for all your hard work!',
       name: 'finishMessage',
       desc: '',
       args: [],
@@ -135,6 +135,16 @@ class S {
     return Intl.message(
       'PAUSE',
       name: 'pauseButton',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RESTART`
+  String get restartButton {
+    return Intl.message(
+      'RESTART',
+      name: 'restartButton',
       desc: '',
       args: [],
     );
