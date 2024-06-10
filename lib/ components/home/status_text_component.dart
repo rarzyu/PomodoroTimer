@@ -15,14 +15,19 @@ class StatusTextComponent extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(timerStateProvider);
 
+    double screenHeight = MediaQuery.of(context).size.height;
+    double fontsize =
+        (AppDimens.baseTitleTextSize / AppDimens.baseScreenHeight) *
+            screenHeight;
+
     return Container(
       padding: EdgeInsets.only(top: 10),
-      child: _getTitle(state),
+      child: _getTitle(state, fontsize),
     );
   }
 
   /// タイトルテキスト
-  Text _getTitle(TimerState state) {
+  Text _getTitle(TimerState state, double fontSize) {
     String title = '';
     Color color = AppColors.baseText;
 
@@ -45,7 +50,7 @@ class StatusTextComponent extends ConsumerWidget {
     return Text(
       title,
       style: AppDimens.baseTextStyle.copyWith(
-        fontSize: 40,
+        fontSize: fontSize,
         color: color,
       ),
     );

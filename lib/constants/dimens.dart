@@ -13,8 +13,20 @@ class AppDimens {
   );
 
   // ##サイズ
-  // 設定画面のテキストサイズ
-  static const double settingItemTextSize = 20;
+  // 基準となるスクリーンサイズ
+  static const double baseScreenWidth = 375.0;
+  static const double baseScreenHeight = 665.0;
+
+  // 上記基準をもとにしたテキストサイズ
+  static const double baseSettingTextSize = 17;
+  static const double baseTitleTextSize = 32;
+  static const double baseTimerTextSize = 48;
+  static const double baseLargeButtonTextSize = 22;
+  static const double baseSmallButtonTextSize = 18;
+
+  // 上記基準をもとにしたボタンサイズ
+  static const double baseLargeButtonWidth = 180;
+  static const double baseSmallButtonWidth = 100;
 
   // ##マージン
 

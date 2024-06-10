@@ -40,38 +40,43 @@ class _SettingTextItemComponentState extends State<SettingTextItemComponent> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double fontsize =
+        (AppDimens.baseSettingTextSize / AppDimens.baseScreenHeight) *
+            screenHeight;
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      padding: EdgeInsets.symmetric(
+          vertical: screenHeight * 0.015, horizontal: screenWidth * 0.04),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(width: screenWidth * 0.05),
-          itemLabel(context, widget.title),
+          itemLabel(context, widget.title, fontsize),
           Container(width: screenWidth * 0.1),
-          textField(context),
+          textField(context, fontsize),
         ],
       ),
     );
   }
 
   /// 項目ラベル
-  Widget itemLabel(BuildContext context, String title) {
+  Widget itemLabel(BuildContext context, String title, double fontSize) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
-      width: screenWidth * 0.45,
+      width: screenWidth * 0.5,
       child: Text(
         title,
         style: AppDimens.baseTextStyle.copyWith(
-          fontSize: AppDimens.settingItemTextSize,
+          fontSize: fontSize,
         ),
       ),
     );
   }
 
   /// テキストフィールド
-  Widget textField(BuildContext context) {
+  Widget textField(BuildContext context, double fontSize) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
@@ -90,7 +95,7 @@ class _SettingTextItemComponentState extends State<SettingTextItemComponent> {
           maxLength: widget.maxLength,
           keyboardType: TextInputType.number,
           style: AppDimens.baseTextStyle.copyWith(
-            fontSize: AppDimens.settingItemTextSize,
+            fontSize: fontSize,
           ),
           decoration: InputDecoration(
             border: InputBorder.none,

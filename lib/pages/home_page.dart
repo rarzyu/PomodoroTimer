@@ -36,7 +36,6 @@ class HomePage extends ConsumerWidget {
               ? StartButtonComponent()
               : WorkingButtonsComponent(),
           Spacer(),
-          Padding(padding: EdgeInsets.only(bottom: 10)),
           FooterComponent(),
         ]),
       ),

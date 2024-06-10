@@ -20,12 +20,12 @@ class FooterComponent extends StatelessWidget {
   /// フッター全体
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width; // 画面の幅
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
       child: Column(
         children: [
-          AdBanner(),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -36,6 +36,8 @@ class FooterComponent extends StatelessWidget {
               SettingIcon(context),
             ],
           ),
+          AdBanner(),
+          Padding(padding: EdgeInsets.only(bottom: screenHeight * 0.03)),
         ],
       ),
     );
