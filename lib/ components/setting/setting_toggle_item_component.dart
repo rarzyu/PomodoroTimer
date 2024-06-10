@@ -42,7 +42,7 @@ class _SettingToggleItemState extends State<SettingToggleItemComponent> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(width: screenWidth * 0.05),
+          Container(width: screenWidth * 0.035),
           itemLabel(context, widget.title, fontsize),
           Container(width: screenWidth * 0.18),
           toggleSwitch(context),

@@ -51,7 +51,7 @@ class _SettingTextItemComponentState extends State<SettingTextItemComponent> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(width: screenWidth * 0.05),
+          Container(width: screenWidth * 0.035),
           itemLabel(context, widget.title, fontsize),
           Container(width: screenWidth * 0.1),
           textField(context, fontsize),

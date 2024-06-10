@@ -7,15 +7,37 @@ import 'package:pomodoro_timer/view_models/footer_view_model.dart';
 
 /// 共通フッター
 /// - 画面遷移と広告の表示を行う
-class FooterComponent extends StatelessWidget {
+class FooterComponent extends StatefulWidget {
+  @override
+  _FooterComponent createState() => _FooterComponent();
+}
+
+class _FooterComponent extends State<FooterComponent>
+    with WidgetsBindingObserver {
   final FooterViewModel footerViewModel = FooterViewModel();
 
-  // アイコンサイズ
-  static const double iconSize = 40;
-  // アイコンマージン
-  static const EdgeInsets iconMargin = EdgeInsets.all(20);
-  // アイコンパディング
-  static const EdgeInsets iconPadding = EdgeInsets.all(10);
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.resumed) {
+      debugPrint("フォアグラウンド：footer_component");
+      footerViewModel.createBannerAd();
+    } else if (state == AppLifecycleState.paused) {
+      debugPrint("バックグラウンド：footer_component");
+    }
+  }
 
   /// フッター全体
   @override
@@ -23,17 +45,23 @@ class FooterComponent extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
+    double iconSize =
+        (AppDimens.baseIconSize / AppDimens.baseScreenHeight) * screenHeight;
+
+    EdgeInsets iconMargine = EdgeInsets.all(screenWidth * 0.05);
+    EdgeInsets iconPadding = EdgeInsets.all(screenWidth * 0.025);
+
     return Container(
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              HomeIcon(context),
+              HomeIcon(context, iconSize, iconMargine, iconPadding),
               Container(
-                width: screenWidth * 0.3,
+                width: screenWidth * 0.25,
               ),
-              SettingIcon(context),
+              SettingIcon(context, iconSize, iconMargine, iconPadding),
             ],
           ),
           AdBanner(),
@@ -54,7 +82,8 @@ class FooterComponent extends StatelessWidget {
   }
 
   /// ホーム画面アイコン
-  Widget HomeIcon(BuildContext context) {
+  Widget HomeIcon(BuildContext context, double iconSize, EdgeInsets iconMargin,
+      EdgeInsets iconPadding) {
     return NeumorphicButton(
       padding: iconPadding,
       margin: iconMargin,
@@ -74,7 +103,8 @@ class FooterComponent extends StatelessWidget {
   }
 
   /// 設定画面アイコン
-  Widget SettingIcon(BuildContext context) {
+  Widget SettingIcon(BuildContext context, double iconSize,
+      EdgeInsets iconMargin, EdgeInsets iconPadding) {
     return NeumorphicButton(
       padding: iconPadding,
       margin: iconMargin,

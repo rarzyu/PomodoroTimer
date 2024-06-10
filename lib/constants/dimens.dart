@@ -28,6 +28,9 @@ class AppDimens {
   static const double baseLargeButtonWidth = 180;
   static const double baseSmallButtonWidth = 100;
 
+  // 上記基準をもとにしたアイコンサイズ
+  static const double baseIconSize = 35;
+
   // ##マージン
 
   // ##パディング
