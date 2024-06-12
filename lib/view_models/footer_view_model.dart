@@ -26,11 +26,17 @@ class FooterViewModel {
       // 確率でインタースティシャル広告を表示
       _adService.showInterstitialAdRandom();
 
-      _adService.bannerAd.dispose(); // 広告の破棄
-      _adService.createBannerAd(); // 広告の再生成
+      createBannerAd();
 
       // 遷移
       Navigator.pushNamed(context, path);
     }
+  }
+
+  /// バナーロード
+  void createBannerAd() {
+    _adService.bannerAd.dispose();
+    _adService.createBannerAd();
+    bannerAd = _adService.bannerAd;
   }
 }

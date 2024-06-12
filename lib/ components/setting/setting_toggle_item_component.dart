@@ -30,15 +30,21 @@ class _SettingToggleItemState extends State<SettingToggleItemComponent> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    double fontsize =
+        (AppDimens.baseSettingTextSize / AppDimens.baseScreenHeight) *
+            screenHeight;
 
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+      padding: EdgeInsets.symmetric(
+          vertical: screenHeight * 0.015, horizontal: screenWidth * 0.04),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(width: screenWidth * 0.05),
-          itemLabel(context, widget.title),
-          Container(width: screenWidth * 0.15),
+          Container(width: screenWidth * 0.035),
+          itemLabel(context, widget.title, fontsize),
+          Container(width: screenWidth * 0.18),
           toggleSwitch(context),
         ],
       ),
@@ -46,7 +52,7 @@ class _SettingToggleItemState extends State<SettingToggleItemComponent> {
   }
 
   /// 項目ラベル
-  Widget itemLabel(BuildContext context, String title) {
+  Widget itemLabel(BuildContext context, String title, double fontSize) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Container(
@@ -54,7 +60,7 @@ class _SettingToggleItemState extends State<SettingToggleItemComponent> {
       child: Text(
         title,
         style: AppDimens.baseTextStyle.copyWith(
-          fontSize: AppDimens.settingItemTextSize,
+          fontSize: fontSize,
         ),
       ),
     );
@@ -65,7 +71,7 @@ class _SettingToggleItemState extends State<SettingToggleItemComponent> {
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Container(
-      height: screenHeight * 0.035,
+      height: screenHeight * 0.04,
       child: NeumorphicSwitch(
           style: NeumorphicSwitchStyle(
             thumbDepth: 2,

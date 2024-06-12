@@ -28,6 +28,11 @@ class TimerProgressComponent extends ConsumerWidget {
     double topPadding = MediaQuery.of(context).size.height * 0.02;
     double bottomPadding = MediaQuery.of(context).size.height * 0.03;
 
+    double screenHeigh = MediaQuery.of(context).size.height;
+    double fontsize =
+        (AppDimens.baseTimerTextSize / AppDimens.baseScreenHeight) *
+            screenHeigh;
+
     return Container(
       padding: EdgeInsets.only(top: topPadding, bottom: bottomPadding),
       child: Stack(
@@ -39,7 +44,7 @@ class TimerProgressComponent extends ConsumerWidget {
               : progressBar(context, state, settingModel),
           centerCircle(context),
           timerText(ref.watch(timerStateProvider.notifier).remainingTimeString,
-              state),
+              state, fontsize),
         ],
       ),
     );
@@ -107,11 +112,11 @@ class TimerProgressComponent extends ConsumerWidget {
   }
 
   /// タイマーテキスト
-  Widget timerText(String time, TimerState state) {
+  Widget timerText(String time, TimerState state, double fontSize) {
     return Container(
       child: Text(time,
           style: AppDimens.baseTextStyle
-              .copyWith(fontSize: 60, color: _getTimeColor(state))),
+              .copyWith(fontSize: fontSize, color: _getTimeColor(state))),
     );
   }
 

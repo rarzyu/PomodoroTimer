@@ -9,28 +9,36 @@ import 'package:pomodoro_timer/providers/timer_state_provider.dart';
 /// スタートボタン
 class StartButtonComponent extends ConsumerWidget {
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double topPadding = screenHeight * 0.02;
+    double topPadding = screenHeight * 0.015;
+
+    double fontsize =
+        (AppDimens.baseLargeButtonTextSize / AppDimens.baseScreenHeight) *
+            screenHeight;
+
+    double buttonWidth =
+        (AppDimens.baseLargeButtonWidth / AppDimens.baseScreenWidth) *
+            screenWidth;
 
     return Padding(
       padding: EdgeInsets.only(top: topPadding),
       child: TextIconButtonComponent(
         text: Text(S.of(context).startButton,
             style: AppDimens.baseTextStyle.copyWith(
-              fontSize: 25,
+              fontSize: fontsize,
             )),
         icon: Icon(
           Icons.arrow_forward_ios,
           color: AppColors.baseText,
-          size: 25,
+          size: fontsize,
         ),
         onPressed: () {
           debugPrint('スタートボタンが押されました');
           ref.read(timerStateProvider.notifier).start();
-        } ,
-        width: screenWidth * 0.6,
+        },
+        width: buttonWidth,
       ),
     );
   }
