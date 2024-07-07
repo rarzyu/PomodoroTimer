@@ -1,16 +1,22 @@
-# pomodoro_timer
+# ザ・ポモドーロタイマー
+このアプリは、ポモドーロテクニックを利用する際に便利なタイマーアプリです。
 
-A new Flutter project.
+## 特徴
+- 集中しやすいデザイン
+    - シンプルな機能・シンプルなデザインなので使いやすく集中できます。
+- 細かいカスタマイズ
+    - 作業時間だけでなく、セット数・休憩までの繰り返し回数など、細かいカスタマイズが可能です。
 
-## Getting Started
+## アプリのインストール
+- iOS
+    - https://apps.apple.com/jp/app/%E3%82%B6-%E3%83%9D%E3%83%A2%E3%83%89%E3%83%BC%E3%83%AD%E3%82%BF%E3%82%A4%E3%83%9E%E3%83%BC/id6502401630
+- Android
+    - https://play.google.com/store/apps/details?id=com.rarzyu.pomodoro_timer&pcampaignid=web_share
 
-This project is a starting point for a Flutter application.
+## ライセンス
+このプロジェクトはGNU General Public License v3.0の下でライセンスされています。詳細はLICENSEファイルを参照してください。
 
-A few resources to get you started if this is your first Flutter project:
+This project is licensed under the GNU General Public License v3.0. For more details, see the LICENSE file.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 著者
+[らるじゅ（Rarzyu）](https://github.com/rarzyu)
