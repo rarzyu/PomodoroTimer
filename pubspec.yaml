@@ -39,12 +39,6 @@ dependencies:
   dotenv: ^4.2.0
   flutter_dotenv: ^5.1.0
 
-  # Flutter3.10.0から対応できないので、GitHubから取得する
-  # issure:https://github.com/Idean/Flutter-Neumorphic/issues/274
-  flutter_neumorphic:
-    git:
-      url: https://github.com/den0206/Flutter-Neumorphic.git
-      ref: feature/remoce_accentcolor
   google_mobile_ads: ^4.0.0
   intl: ^0.18.1
   shared_preferences: ^2.2.2
@@ -57,6 +51,8 @@ dependencies:
   wakelock_plus: ^1.1.4
   app_tracking_transparency: ^2.0.5
   flutter_launcher_icons: ^0.13.1
+  flutter_background: ^1.2.0
+  flutter_neumorphic_plus: ^3.3.0
 
 flutter_icons:
   ios: true

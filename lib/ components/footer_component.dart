@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:pomodoro_timer/constants/colors.dart';
 import 'package:pomodoro_timer/constants/dimens.dart';
-import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:pomodoro_timer/view_models/footer_view_model.dart';
 
 /// 共通フッター

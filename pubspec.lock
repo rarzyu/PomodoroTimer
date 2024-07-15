@@ -326,6 +326,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_background:
+    dependency: "direct main"
+    description:
+      name: flutter_background
+      sha256: "035c31a738509d67ee70bbf174e5aa7db462c371e838ec8259700c5c4e7ca17f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.0"
   flutter_dotenv:
     dependency: "direct main"
     description:
@@ -355,15 +363,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_neumorphic:
+  flutter_neumorphic_plus:
     dependency: "direct main"
     description:
-      path: "."
-      ref: "feature/remoce_accentcolor"
-      resolved-ref: "07f44e0ae36cf68452ed65f0516352da262c9814"
-      url: "https://github.com/den0206/Flutter-Neumorphic.git"
-    source: git
-    version: "3.2.0"
+      name: flutter_neumorphic_plus
+      sha256: fc702c6414c6d9e1498f84ca124b59104e0dcbac59f92a47c5776e023d985e63
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.0"
   flutter_riverpod:
     dependency: "direct main"
     description:
