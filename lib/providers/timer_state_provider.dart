@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter_neumorphic_plus/flutter_neumorphic.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pomodoro_timer/constants/timer_status.dart';
 import 'package:pomodoro_timer/constants/timer_type.dart';
@@ -21,6 +22,7 @@ final timerStateProvider =
 
 class TimerStateNotifier extends StateNotifier<TimerState> {
   Timer? _timer;
+  Timer? _dummyTimer;
   bool _isFinished = false;
 
   final Stopwatch _stopwatch = Stopwatch(); // 正確に時間を計測するため、Stopwatchを使用
@@ -109,6 +111,34 @@ class TimerStateNotifier extends StateNotifier<TimerState> {
 
       // 1秒毎にコールバック
       _timerCallback();
+    }
+  }
+
+  /// バックグラウンドに行く時、戻ってくる時に行う処理
+  /// @param state(AppLifecycleState):アプリの状態
+  void changeLifecycleJob(AppLifecycleState state) {
+    switch (state) {
+
+      // フォアグラウンドに戻ってきた時
+      case AppLifecycleState.resumed:
+        if (_dummyTimer != null) {
+          _dummyTimer?.cancel();
+        }
+        break;
+
+      // バックグラウンドに行く時
+      case AppLifecycleState.paused:
+        // 10秒間隔でダミーコールバックを実行。ログを吐くだけ
+        _dummyTimer = Timer.periodic(
+          const Duration(seconds: 10),
+          (Timer timer) {
+            debugPrint('ダミーコールバック：${timer.tick}');
+          },
+        );
+        break;
+
+      default:
+        break;
     }
   }
 
