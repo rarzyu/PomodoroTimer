@@ -11,14 +11,39 @@ import 'package:pomodoro_timer/generated/l10n.dart';
 import 'package:pomodoro_timer/providers/timer_state_provider.dart';
 
 /// ホーム画面
-class HomePage extends ConsumerWidget {
+class HomePage extends ConsumerStatefulWidget {
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends ConsumerState<HomePage>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    super.didChangeAppLifecycleState(state);
+    // バックグラウンドでのタイマー維持用の処理
+    ref.read(timerStateProvider.notifier).changeLifecycleJob(state);
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final timerState = ref.watch(timerStateProvider);
     final ShowDialogComponent _showDialogComponent = ShowDialogComponent();
 
     // タイマーが終了した場合はダイアログを表示
-    // ウィジェットが描画された後にダイアログを実行する必要があるので、
+    // ウィジェットが描画された後にダイアログを実行する必要があるため、addPostFrameCallbackを使用
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (ref.watch(timerStateProvider.notifier).isFinished) {
         _showDialogComponent.showInfoDialogAfterAd(

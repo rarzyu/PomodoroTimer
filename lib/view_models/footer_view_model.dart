@@ -7,7 +7,7 @@ import '../utils/navigate_util.dart';
 class FooterViewModel {
   final AdService _adService = AdService();
 
-  late BannerAd bannerAd;
+  BannerAd? bannerAd;
   InterstitialAd? interstitialAd;
 
   /// コンストラクタ
@@ -38,5 +38,11 @@ class FooterViewModel {
     _adService.bannerAd.dispose();
     _adService.createBannerAd();
     bannerAd = _adService.bannerAd;
+  }
+
+  /// バナー破棄
+  void disposeBannerAd() {
+    _adService.bannerAd.dispose();
+    bannerAd = null;
   }
 }
